@@ -1,0 +1,6 @@
+{
+  "name": "SAHAAY — Local Disaster Warning & Response Coordination Platform",
+  "description": "Local Disaster Warning & Response Coordination Platform connecting Nashik District flood warnings, affected settlements, and road accessibility with explainable AI and dynamic response prioritization.",
+  "requestFramePermissions": ["geolocation", "camera", "microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

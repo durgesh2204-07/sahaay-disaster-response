@@ -1,0 +1,393 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .card-3d {
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  }
+  .card-3d:hover {
+    transform: translateY(-4px) scale(1.005);
+    box-shadow: 0 20px 35px -10px rgba(15, 23, 42, 0.12), 0 12px 15px -8px rgba(15, 23, 42, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+  .btn-3d {
+    box-shadow: 0 4px 12px -2px rgba(13, 148, 136, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 -2px 0 rgba(0, 0, 0, 0.15);
+    transition: all 0.15s ease;
+  }
+  .btn-3d:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 4px -1px rgba(13, 148, 136, 0.2);
+  }
+  .btn-danger-3d {
+    box-shadow: 0 4px 14px -2px rgba(225, 29, 72, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.25), inset 0 -2px 0 rgba(0, 0, 0, 0.2);
+  }
+  .btn-danger-3d:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 4px -1px rgba(225, 29, 72, 0.2);
+  }
+  .glass-panel {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+  }
+
+  /* SAHAAY Modern Neumorphism & Deep Blue Theme (#1565C0) */
+  .neu-flat {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 4px 4px 14px rgba(160, 175, 200, 0.18), -4px -4px 14px rgba(255, 255, 255, 0.95);
+  }
+
+  /* Pure Futuristic Neumorphism System */
+  .neu-base-bg {
+    background-color: #e9eef5;
+  }
+  .neu-surface-futuristic {
+    background: #eaf0f7;
+    box-shadow: 12px 12px 28px #c8d3e2, -12px -12px 28px #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+  }
+  .neu-card-futuristic {
+    background: #eaf0f7;
+    box-shadow: 8px 8px 20px #cad5e5, -8px -8px 20px #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .neu-card-futuristic:hover {
+    box-shadow: 10px 10px 24px #c2cee0, -10px -10px 24px #ffffff;
+    transform: translateY(-2px);
+  }
+  .neu-well-inset {
+    background: #e4ebf4;
+    box-shadow: inset 4px 4px 9px #c7d2e2, inset -4px -4px 9px #ffffff;
+  }
+  .neu-input-futuristic {
+    background: #e6edf6;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: inset 3px 3px 6px #cad5e5, inset -3px -3px 6px #ffffff;
+    transition: all 0.2s ease;
+  }
+  .neu-input-futuristic:focus {
+    background: #edf3fa;
+    border-color: rgba(21, 101, 192, 0.5);
+    box-shadow: inset 4px 4px 8px #c2cee0, inset -4px -4px 8px #ffffff, 0 0 0 2px rgba(21, 101, 192, 0.15);
+  }
+  .neu-btn-futuristic {
+    background: #eaf0f7;
+    color: #1e293b;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 5px 5px 14px #cbd6e5, -5px -5px 14px #ffffff;
+    transition: all 0.15s ease;
+  }
+  .neu-btn-futuristic:hover {
+    box-shadow: 7px 7px 18px #c2cee0, -7px -7px 18px #ffffff;
+    transform: translateY(-1px);
+    color: #0f172a;
+  }
+  .neu-btn-futuristic:active, .neu-btn-futuristic-active {
+    box-shadow: inset 3px 3px 6px #cad5e5, inset -3px -3px 6px #ffffff;
+    transform: translateY(1px);
+    background: #e2eaf4;
+  }
+  .neu-badge-embossed {
+    background: #eaf0f7;
+    box-shadow: 3px 3px 8px #cbd6e5, -3px -3px 8px #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+  }
+
+  /* SAHAAY Green & White Neumorphism System */
+  .neu-green-card {
+    background: #ffffff;
+    border: 1px solid rgba(220, 238, 228, 0.9);
+    box-shadow: 8px 8px 24px rgba(165, 195, 180, 0.35), -8px -8px 24px rgba(255, 255, 255, 0.95);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .neu-green-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 12px 12px 30px rgba(165, 195, 180, 0.45), -12px -12px 30px rgba(255, 255, 255, 1);
+  }
+  .neu-green-inset {
+    background: #eef6f2;
+    border: 1px solid rgba(200, 226, 214, 0.7);
+    box-shadow: inset 3px 3px 7px rgba(160, 190, 175, 0.35), inset -3px -3px 7px rgba(255, 255, 255, 0.95);
+  }
+  .neu-green-btn-solid {
+    background: #004d40;
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(0, 77, 64, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    transition: all 0.15s ease;
+  }
+  .neu-green-btn-solid:hover {
+    background: #005a4b;
+    box-shadow: 0 6px 18px rgba(0, 77, 64, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+  .neu-green-btn-solid:active {
+    transform: translateY(1px);
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.35);
+  }
+
+  /* Admin Highlight Card with Distinct Authority Palette */
+  .neu-admin-card {
+    background: #ffffff;
+    border: 1.5px solid rgba(217, 119, 6, 0.4);
+    box-shadow: 8px 8px 24px rgba(217, 119, 6, 0.14), -8px -8px 24px rgba(255, 255, 255, 0.95);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .neu-admin-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(217, 119, 6, 0.65);
+    box-shadow: 12px 12px 30px rgba(217, 119, 6, 0.22), -12px -12px 30px rgba(255, 255, 255, 1);
+  }
+  .neu-admin-btn-solid {
+    background: linear-gradient(135deg, #d97706, #b45309);
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(180, 83, 9, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transition: all 0.15s ease;
+  }
+  .neu-admin-btn-solid:hover {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+    box-shadow: 0 6px 18px rgba(180, 83, 9, 0.45);
+  }
+  .neu-admin-btn-solid:active {
+    transform: translateY(1px);
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.35);
+  }
+
+  .neu-raised {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 6px 6px 20px rgba(160, 175, 200, 0.22), -6px -6px 20px rgba(255, 255, 255, 1);
+  }
+
+  .neu-card-interactive {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 5px 5px 16px rgba(160, 175, 200, 0.18), -5px -5px 16px rgba(255, 255, 255, 0.95);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .neu-card-interactive:hover {
+    transform: translateY(-2px);
+    box-shadow: 8px 8px 24px rgba(160, 175, 200, 0.3), -8px -8px 24px rgba(255, 255, 255, 1);
+    border-color: #cbd5e1;
+  }
+  .neu-card-interactive:active {
+    transform: translateY(1px);
+    box-shadow: 3px 3px 8px rgba(160, 175, 200, 0.22), -3px -3px 8px rgba(255, 255, 255, 0.9);
+  }
+
+  .neu-inset {
+    background: #f0f4f9;
+    border: 1px solid #cbd5e1;
+    box-shadow: inset 2.5px 2.5px 6px rgba(160, 175, 200, 0.32), inset -2.5px -2.5px 6px rgba(255, 255, 255, 0.9);
+  }
+
+  .neu-inset-subtle {
+    background: #f4f7fb;
+    border: 1px solid #e2e8f0;
+    box-shadow: inset 1.5px 1.5px 4px rgba(160, 175, 200, 0.22), inset -1.5px -1.5px 4px rgba(255, 255, 255, 0.9);
+  }
+
+  .neu-btn {
+    background: #ffffff;
+    color: #1565c0;
+    border: 1px solid #e2e8f0;
+    box-shadow: 3px 3px 10px rgba(160, 175, 200, 0.25), -3px -3px 10px rgba(255, 255, 255, 0.95);
+    transition: all 0.15s ease;
+  }
+  .neu-btn:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+    box-shadow: 5px 5px 14px rgba(160, 175, 200, 0.35), -5px -5px 14px rgba(255, 255, 255, 1);
+  }
+  .neu-btn:active {
+    box-shadow: inset 2px 2px 5px rgba(160, 175, 200, 0.4), inset -2px -2px 5px rgba(255, 255, 255, 0.9);
+    transform: translateY(1px);
+  }
+
+  /* Deep Blue Brand Primary Button */
+  .neu-btn-primary {
+    background: linear-gradient(135deg, #1565c0, #0d47a1);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 4px 4px 14px rgba(21, 101, 192, 0.38), -2px -2px 8px rgba(255, 255, 255, 0.7);
+    transition: all 0.15s ease;
+  }
+  .neu-btn-primary:hover {
+    background: linear-gradient(135deg, #1976d2, #1565c0);
+    box-shadow: 5px 5px 18px rgba(21, 101, 192, 0.48), -3px -3px 10px rgba(255, 255, 255, 0.85);
+  }
+  .neu-btn-primary:active {
+    transform: translateY(1px);
+    box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.3), inset -2px -2px 6px rgba(255, 255, 255, 0.15);
+  }
+
+  /* Critical Emergency Action Button */
+  .neu-btn-danger,
+  .neu-btn-emergency {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+    color: #ffffff;
+    border: 1px solid rgba(254, 202, 202, 0.4);
+    box-shadow: 4px 4px 14px rgba(220, 38, 38, 0.4), -2px -2px 8px rgba(255, 255, 255, 0.7);
+    transition: all 0.15s ease;
+  }
+  .neu-btn-danger:hover,
+  .neu-btn-emergency:hover {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    box-shadow: 6px 6px 18px rgba(220, 38, 38, 0.5), -3px -3px 10px rgba(255, 255, 255, 0.85);
+  }
+  .neu-btn-danger:active,
+  .neu-btn-emergency:active {
+    transform: translateY(1px);
+    box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.35), inset -2px -2px 6px rgba(255, 255, 255, 0.2);
+  }
+
+  /* Safe / Success Action Button */
+  .neu-btn-success {
+    background: linear-gradient(135deg, #16a34a, #15803d);
+    color: #ffffff;
+    border: 1px solid rgba(187, 247, 208, 0.4);
+    box-shadow: 4px 4px 14px rgba(22, 163, 74, 0.35), -2px -2px 8px rgba(255, 255, 255, 0.7);
+    transition: all 0.15s ease;
+  }
+  .neu-btn-success:hover {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    box-shadow: 5px 5px 18px rgba(22, 163, 74, 0.45);
+  }
+  .neu-btn-success:active {
+    transform: translateY(1px);
+    box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Secondary / Neutral Elevated Button */
+  .neu-btn-secondary {
+    background: #ffffff;
+    color: #1565c0;
+    border: 1px solid #e2e8f0;
+    box-shadow: 3px 3px 10px rgba(160, 175, 200, 0.22), -3px -3px 10px rgba(255, 255, 255, 0.95);
+    transition: all 0.15s ease;
+  }
+  .neu-btn-secondary:hover {
+    background: #f0f7ff;
+    border-color: #bfdbfe;
+    color: #0d47a1;
+  }
+
+  .neu-chip-active {
+    background: #e9f2ff;
+    box-shadow: inset 2px 2px 5px rgba(21, 101, 192, 0.25), inset -2px -2px 5px rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(21, 101, 192, 0.4);
+    color: #0d47a1;
+  }
+
+  /* Safe minimum mobile touch target */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+body {
+  background-color: #f4f7fb;
+  color: #172033;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #93c5fd;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #1565c0;
+}
+
+/* Custom Horizontal Navbar Scrollbar */
+.nav-scroll-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #1565c0 #f1f5f9;
+}
+.nav-scroll-container::-webkit-scrollbar {
+  height: 6px;
+}
+.nav-scroll-container::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 9999px;
+}
+.nav-scroll-container::-webkit-scrollbar-thumb {
+  background: #1565c0;
+  border-radius: 9999px;
+}
+.nav-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #0d47a1;
+}
+
+/* Modal and Drawer Smooth Scroll Area */
+.modal-scroll-area {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.7) transparent;
+}
+.modal-scroll-area::-webkit-scrollbar {
+  width: 6px;
+}
+.modal-scroll-area::-webkit-scrollbar-track {
+  background: transparent;
+}
+.modal-scroll-area::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.7);
+  border-radius: 9999px;
+}
+.modal-scroll-area::-webkit-scrollbar-thumb:hover {
+  background: rgba(100, 116, 139, 0.95);
+}
+
+/* Leaflet container & marker fixes */
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  z-index: 1;
+  background-color: #0f172a !important;
+}
+
+/* Reset default leaflet divIcon border/background */
+.leaflet-marker-icon.custom-disaster-pin,
+.leaflet-marker-icon.user-gps-beacon {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Ensure Leaflet popups render nicely above map */
+.leaflet-popup-content-wrapper {
+  border-radius: 1rem !important;
+  padding: 0.25rem !important;
+  box-shadow: 0 20px 25px -5px rgba(0,0,0,0.2), 0 8px 10px -6px rgba(0,0,0,0.1) !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+.leaflet-popup-tip {
+  background: white !important;
+}
+
